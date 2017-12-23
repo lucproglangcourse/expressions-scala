@@ -1,7 +1,7 @@
 package edu.luc.cs.laufer.cs473.expressions
 
 import org.parboiled2.ParseError
-import scala.util.{ Failure, Success }
+import scala.util.{Failure, Success}
 
 object PegCalculator extends App {
 
