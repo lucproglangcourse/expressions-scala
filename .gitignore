@@ -32,3 +32,4 @@ local.sbt
 
 # Mac files
 .DS_Store
+project/build.properties
