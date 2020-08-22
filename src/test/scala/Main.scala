@@ -1,6 +1,6 @@
 package edu.luc.cs.laufer.cs473.expressions
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
 import behaviors._
 import TestFixtures._
@@ -18,7 +18,7 @@ object Main extends App {
   println(toFormattedString(complex2))
 }
 
-class Test extends FunSuite {
+class Test extends AnyFunSuite {
   test("evaluate(p)") { assert(evaluate(complex1) === -1) }
   test("size(p)") { assert(size(complex1) === 9) }
   test("height(p)") { assert(height(complex1) === 4) }

@@ -1,6 +1,6 @@
 package edu.luc.cs.laufer.cs473.expressions
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
 import TestFixtures._
 
@@ -12,7 +12,7 @@ object MainPegParser extends App {
   println(behaviors.evaluate(parsedExpr.get))
 }
 
-class TestPegParser extends FunSuite {
+class TestPegParser extends AnyFunSuite {
   val parsedExpr = new PegParser(complex1string).InputLine.run()
   val parsedExpr2 = new PegParser(complex1string2).InputLine.run()
   test("parser works 1") { assert(parsedExpr.get === complex1) }
