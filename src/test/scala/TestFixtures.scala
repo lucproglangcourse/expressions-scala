@@ -17,7 +17,7 @@ object TestFixtures {
         )
       ),
       Constant(5)
-    );
+    )
 
   val complex1string = "((1 + 2) - (3 * 4)) / 5"
 
@@ -38,5 +38,5 @@ object TestFixtures {
         )
       ),
       Constant(5)
-    );
+    )
 }
