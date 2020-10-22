@@ -1,4 +1,4 @@
-package edu.luc.cs.laufer.cs473.expressions.ast
+package edu.luc.cs.laufer.cs371.expressions.ast
 
 /** An initial algebra of arithmetic expressions. */
 sealed trait Expr

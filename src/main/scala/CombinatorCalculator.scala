@@ -1,4 +1,4 @@
-package edu.luc.cs.laufer.cs473.expressions
+package edu.luc.cs.laufer.cs371.expressions
 
 object CombinatorCalculator extends App {
 

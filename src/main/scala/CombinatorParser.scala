@@ -1,4 +1,4 @@
-package edu.luc.cs.laufer.cs473.expressions
+package edu.luc.cs.laufer.cs371.expressions
 
 import scala.util.parsing.combinator.JavaTokenParsers
 import ast._
