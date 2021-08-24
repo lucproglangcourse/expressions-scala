@@ -5,7 +5,7 @@ object CombinatorCalculator extends App {
   def processExpr(input: String): Unit = {
     println("You entered: " + input)
     val result = CombinatorParser.parseAll(CombinatorParser.expr, input)
-    if (result.isEmpty) {
+    if result.isEmpty then {
       println("This expression could not be parsed")
     } else {
       import behaviors._
@@ -17,7 +17,7 @@ object CombinatorCalculator extends App {
     }
   }
 
-  if (args.length > 0) {
+  if args.length > 0 then {
     processExpr(args mkString " ")
   } else {
     print("Enter infix expression: ")
