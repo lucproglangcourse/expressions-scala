@@ -5,6 +5,9 @@ import ast.Expr, Expr._
 
 object CombinatorParser extends JavaTokenParsers {
 
+  /** Enable typesafe equality between `None` and `Option`. */
+  given CanEqual[None.type, Option[_]] = CanEqual.derived
+
   /** expr ::= term { { "+" | "-" } term }* */
   def expr: Parser[Expr] =
     term ~! opt(("+" | "-") ~ term) ^^ {

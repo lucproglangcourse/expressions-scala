@@ -1,7 +1,7 @@
 package edu.luc.cs.laufer.cs371.expressions.ast
 
 /** An initial algebra of arithmetic expressions. */
-enum Expr:
+enum Expr derives CanEqual:
   case Constant(value: Int)
   case UMinus(expr: Expr)
   case Plus(left: Expr, right: Expr)
