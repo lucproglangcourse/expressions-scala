@@ -1,6 +1,7 @@
 package edu.luc.cs.laufer.cs371.expressions
 
-import ast._
+import ast.Expr
+import ast.Expr._
 
 object behaviors {
 
