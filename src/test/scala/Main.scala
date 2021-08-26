@@ -2,8 +2,8 @@ package edu.luc.cs.laufer.cs371.expressions
 
 import org.scalatest.funsuite.AnyFunSuite
 
-import behaviors._
-import TestFixtures._
+import behaviors.*
+import TestFixtures.*
 
 object Main extends App {
   println("p = " + complex1)

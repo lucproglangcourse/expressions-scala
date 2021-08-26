@@ -1,7 +1,7 @@
 package edu.luc.cs.laufer.cs371.expressions
 
 import scala.util.parsing.combinator.JavaTokenParsers
-import ast.Expr, Expr._
+import ast.Expr, Expr.*
 
 object CombinatorParser extends JavaTokenParsers {
 

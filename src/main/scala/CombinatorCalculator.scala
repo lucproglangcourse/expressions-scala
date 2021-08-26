@@ -8,7 +8,7 @@ object CombinatorCalculator extends App {
     if result.isEmpty then {
       println("This expression could not be parsed")
     } else {
-      import behaviors._
+      import behaviors.*
       val expr = result.get
       println("The parsed expression is: ")
       println(toFormattedString(expr))
