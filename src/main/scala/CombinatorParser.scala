@@ -7,7 +7,8 @@ object CombinatorParser extends JavaTokenParsers {
 
   /**
    * Enable missing typesafe equality between `None` and `Option`.
-   * TODO remove once the library provides this. */
+   * TODO remove once the library provides this.
+   */
   given CanEqual[None.type, Option[_]] = CanEqual.derived
 
   /** expr ::= term { { "+" | "-" } term }* */
