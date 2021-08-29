@@ -11,4 +11,6 @@ libraryDependencies ++= Seq(
   "org.scalatest"          %% "scalatest"                % "3.2.9" % Test
 )
 
+enablePlugins(JavaAppPackaging)
+
 scalacOptions ++= Seq("-rewrite", "-new-syntax")

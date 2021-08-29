@@ -1,6 +1,6 @@
 package edu.luc.cs.laufer.cs371.expressions
 
-object CombinatorCalculator extends App {
+object CombinatorCalculator {
 
   def processExpr(input: String): Unit = {
     println("You entered: " + input)
@@ -17,13 +17,15 @@ object CombinatorCalculator extends App {
     }
   }
 
-  if args.length > 0 then {
-    processExpr(args mkString " ")
-  } else {
-    print("Enter infix expression: ")
-    scala.io.Source.stdin.getLines() foreach { line =>
-      processExpr(line)
+  def main(args: Array[String]): Unit = {
+    if args.length > 0 then {
+      processExpr(args mkString " ")
+    } else {
       print("Enter infix expression: ")
+      scala.io.Source.stdin.getLines() foreach { line =>
+        processExpr(line)
+        print("Enter infix expression: ")
+      }
     }
   }
 }
