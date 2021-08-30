@@ -5,17 +5,19 @@ import org.scalatest.funsuite.AnyFunSuite
 import behaviors.*
 import TestFixtures.*
 
-object Main extends App {
-  println("p = " + complex1)
-  println("evaluate(p) = " + evaluate(complex1))
-  println("size(p) = " + size(complex1))
-  println("height(p) = " + height(complex1))
-  println(toFormattedString(complex1))
-  println("q = " + complex2)
-  println("evaluate(q) = " + evaluate(complex2))
-  println("size(q) = " + size(complex2))
-  println("height(q) = " + height(complex2))
-  println(toFormattedString(complex2))
+object Main {
+  def main(args: Array[String]): Unit = {
+    println("p = " + complex1)
+    println("evaluate(p) = " + evaluate(complex1))
+    println("size(p) = " + size(complex1))
+    println("height(p) = " + height(complex1))
+    println(toFormattedString(complex1))
+    println("q = " + complex2)
+    println("evaluate(q) = " + evaluate(complex2))
+    println("size(q) = " + size(complex2))
+    println("height(q) = " + height(complex2))
+    println(toFormattedString(complex2))
+  }
 }
 
 class Test extends AnyFunSuite {

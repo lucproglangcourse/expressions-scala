@@ -4,12 +4,14 @@ import org.scalatest.funsuite.AnyFunSuite
 import TestFixtures.*
 import edu.luc.cs.laufer.cs371.expressions.ast.Expr
 
-object MainCombinatorParser extends App {
-  val parsedExpr = CombinatorParser.parseAll(CombinatorParser.expr, complex1string)
-  println(parsedExpr.get)
-  println(complex1)
-  println(parsedExpr.get == complex1)
-  println(behaviors.evaluate(parsedExpr.get))
+object MainCombinatorParser {
+  def main(args: Array[String]): Unit = {
+    val parsedExpr = CombinatorParser.parseAll(CombinatorParser.expr, complex1string)
+    println(parsedExpr.get)
+    println(complex1)
+    println(parsedExpr.get == complex1)
+    println(behaviors.evaluate(parsedExpr.get))
+  }
 }
 
 class TestCombinatorParser extends AnyFunSuite {
