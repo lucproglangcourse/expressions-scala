@@ -6,10 +6,10 @@ import ast.Expr, Expr.*
 object CombinatorParser extends JavaTokenParsers {
 
   /**
-   * Enable missing typesafe equality between `None` and `Option`.
-   * TODO remove once the library provides this.
+   * Enable missing typesafe equality for `~`.
+   * TODO remove once the combinator parser library provides this.
    */
-  given CanEqual[None.type, Option[_]] = CanEqual.derived
+  given [A, B](using CanEqual[A, A], CanEqual[B, B]): CanEqual[A ~ B, A ~ B] = CanEqual.derived
 
   /** expr ::= term { { "+" | "-" } term }* */
   def expr: Parser[Expr] =
