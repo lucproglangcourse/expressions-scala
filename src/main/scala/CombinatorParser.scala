@@ -3,7 +3,7 @@ package edu.luc.cs.laufer.cs371.expressions
 import scala.util.parsing.combinator.JavaTokenParsers
 import ast.Expr, Expr.*
 
-object CombinatorParser extends JavaTokenParsers {
+object CombinatorParser extends JavaTokenParsers:
 
   /**
    * Enable missing typesafe equality for `~`.
@@ -35,4 +35,5 @@ object CombinatorParser extends JavaTokenParsers {
     | "-" ~> factor ^^ { case e => UMinus(e) }
     | "(" ~ expr ~ ")" ^^ { case _ ~ e ~ _ => e }
   )
-}
+
+end CombinatorParser

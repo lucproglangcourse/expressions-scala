@@ -1,6 +1,6 @@
 package edu.luc.cs.laufer.cs371.expressions
 
-object TestFixtures {
+object TestFixtures:
 
   import ast.Expr.*
 
@@ -39,4 +39,5 @@ object TestFixtures {
       ),
       Constant(5)
     )
-}
+
+end TestFixtures
