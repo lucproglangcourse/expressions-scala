@@ -1,7 +1,6 @@
 package edu.luc.cs.laufer.cs371.expressions
 
 import Expr.*
-import org.json4s.JsonAST.JValue
 
 object behaviors:
 
@@ -32,6 +31,7 @@ object behaviors:
     case Div(l, r)   => 1 + math.max(height(l), height(r))
     case Mod(l, r)   => 1 + math.max(height(l), height(r))
 
+  import org.json4s.JsonAST.JValue
   import org.json4s.JsonDSL._
   def toJson(e: Expr): JValue = e match
     case Constant(c) => c
