@@ -1,4 +1,4 @@
-package edu.luc.cs.laufer.cs371.expressions.ast
+package edu.luc.cs.laufer.cs371.expressions
 
 /** An initial algebra of arithmetic expressions. */
 enum Expr derives CanEqual:

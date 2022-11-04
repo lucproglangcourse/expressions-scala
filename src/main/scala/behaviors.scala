@@ -1,6 +1,7 @@
 package edu.luc.cs.laufer.cs371.expressions
 
-import ast.Expr, Expr.*
+import Expr.*
+import org.json4s.JsonAST.JValue
 
 object behaviors:
 
@@ -31,39 +32,10 @@ object behaviors:
     case Div(l, r)   => 1 + math.max(height(l), height(r))
     case Mod(l, r)   => 1 + math.max(height(l), height(r))
 
-  def toFormattedString(prefix: String)(e: Expr): String = e match
-    case Constant(c) => prefix + c.toString
-    case UMinus(r)   => buildUnaryExprString(prefix, "UMinus", toFormattedString(prefix + INDENT)(r))
-    case Plus(l, r)  => buildExprString(prefix, "Plus", toFormattedString(prefix + INDENT)(l), toFormattedString(prefix + INDENT)(r))
-    case Minus(l, r) => buildExprString(prefix, "Minus", toFormattedString(prefix + INDENT)(l), toFormattedString(prefix + INDENT)(r))
-    case Times(l, r) => buildExprString(prefix, "Times", toFormattedString(prefix + INDENT)(l), toFormattedString(prefix + INDENT)(r))
-    case Div(l, r)   => buildExprString(prefix, "Div", toFormattedString(prefix + INDENT)(l), toFormattedString(prefix + INDENT)(r))
-    case Mod(l, r)   => buildExprString(prefix, "Mod", toFormattedString(prefix + INDENT)(l), toFormattedString(prefix + INDENT)(r))
-
-  def toFormattedString(e: Expr): String = toFormattedString("")(e)
-
-  def buildExprString(prefix: String, nodeString: String, leftString: String, rightString: String) =
-    val result = new StringBuilder(prefix)
-    result.append(nodeString)
-    result.append("(")
-    result.append(EOL)
-    result.append(leftString)
-    result.append(", ")
-    result.append(EOL)
-    result.append(rightString)
-    result.append(")")
-    result.toString
-
-  def buildUnaryExprString(prefix: String, nodeString: String, exprString: String) =
-    val result = new StringBuilder(prefix)
-    result.append(nodeString)
-    result.append("(")
-    result.append(EOL)
-    result.append(exprString)
-    result.append(")")
-    result.toString
-
-  val EOL = scala.util.Properties.lineSeparator
-  val INDENT = ".."
+  import org.json4s.JsonDSL._
+  def toJson(e: Expr): JValue = e match
+    case Constant(c) => c
+    case UMinus(r)   => e.productPrefix -> toJson(r)
+    case p           => p.productPrefix -> (0 until p.productArity).map(i => toJson(p.productElement(i).asInstanceOf[Expr]))
 
 end behaviors

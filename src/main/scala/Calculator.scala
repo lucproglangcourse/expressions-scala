@@ -1,17 +1,19 @@
 package edu.luc.cs.laufer.cs371.expressions
 
-object CombinatorCalculator:
+object Calculator:
 
   def processExpr(input: String): Unit =
     println("You entered: " + input)
-    val result = CombinatorParser.parseAll(CombinatorParser.expr, input)
+    val result = ASTBuilder.parseAll(ASTBuilder.expr, input)
     if result.isEmpty then
       println("This expression could not be parsed")
     else
+      import org.json4s.native.JsonMethods.{pretty, render}
       import behaviors.*
       val expr = result.get
-      println("The parsed expression is: ")
-      println(toFormattedString(expr))
+      println("The parsed expression is: " + expr)
+      println("JSON:")
+      println(pretty(render(toJson(expr))))
       println("It has size " + size(expr) + " and height " + height(expr))
       println("It evaluates to " + evaluate(expr))
 
@@ -25,4 +27,4 @@ object CombinatorCalculator:
         print("Enter infix expression: ")
       }
 
-end CombinatorCalculator
+end Calculator

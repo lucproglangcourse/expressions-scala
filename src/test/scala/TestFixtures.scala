@@ -2,7 +2,7 @@ package edu.luc.cs.laufer.cs371.expressions
 
 object TestFixtures:
 
-  import ast.Expr.*
+  import Expr.*
 
   val complex1 =
     Div(
