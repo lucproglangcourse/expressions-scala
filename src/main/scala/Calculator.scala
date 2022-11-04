@@ -10,9 +10,11 @@ object Calculator:
     else
       import org.json4s.native.JsonMethods.{pretty, render}
       import behaviors.*
+      val raw = RawBuilder.parseAll(RawBuilder.expr, input).get
+      println("The untyped parse tree is: " + raw)
       val expr = result.get
-      println("The parsed expression is: " + expr)
-      println("JSON:")
+      println("The resulting expression is: " + expr)
+      println("The corresponding JSON structure is:")
       println(pretty(render(toJson(expr))))
       println("It has size " + size(expr) + " and height " + height(expr))
       println("It evaluates to " + evaluate(expr))
