@@ -1,8 +1,4 @@
-A simple expression evaluator in Scala. 
-Includes two types of parsers:
-
-- [Scala parser combinators](http://www.scala-lang.org/api/current/scala-parser-combinators/#scala.util.parsing.combinator.Parsers)
-- [parboiled2 parsing expression grammars](https://github.com/sirthias/parboiled2)
+A simple expression evaluator based on [Scala parser combinators](http://www.scala-lang.org/api/current/scala-parser-combinators/#scala.util.parsing.combinator.Parsers).
 
 To run the tests:
 
