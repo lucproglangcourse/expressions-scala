@@ -32,7 +32,7 @@ object behaviors:
     case Mod(l, r)   => 1 + math.max(height(l), height(r))
 
   import org.json4s.JsonAST.JValue
-  import org.json4s.JsonDSL._
+  import org.json4s.JsonDSL.*
   def toJson(e: Expr): JValue = e match
     case Constant(c) => c
     case UMinus(r)   => e.productPrefix -> toJson(r)
