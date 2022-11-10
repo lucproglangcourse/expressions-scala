@@ -9,7 +9,7 @@ object TestFixtures:
     Binary(
       Binary(
         Binary(
-          Constant (1),
+          Constant(1),
           Plus,
           Constant(2)
         ),
