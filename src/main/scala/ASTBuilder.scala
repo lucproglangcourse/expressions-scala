@@ -5,10 +5,12 @@ import Expr.*
 object ASTBuilder:
 
   given CanEqual[None.type, Any] = CanEqual.derived
+  given CanEqual[String, Any] = CanEqual.derived
 
   import ExprParser.~
 
-  def apply(raw: Any): Expr = raw match
+  def apply(cst: Any): Expr = cst match
+    case "(" ~ e ~ ")" => apply(e)
     case l ~ None => apply(l)
     case l ~ Some((op: String) ~ r) => Binary(apply(l), Operator.fromSymbol(op), apply(r))
     case (op: String) ~ e => Unary(Operator.fromSymbol(op), apply(e))
