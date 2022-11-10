@@ -3,19 +3,24 @@ package edu.luc.cs.laufer.cs371.expressions
 object TestFixtures:
 
   import Expr.*
+  import Operator.*
 
   val complex1 =
-    Div(
-      Minus(
-        Plus(
-          Constant(1),
+    Binary(
+      Binary(
+        Binary(
+          Constant (1),
+          Plus,
           Constant(2)
         ),
-        Times(
+        Minus,
+        Binary(
           Constant(3),
+          Times,
           Constant(4)
         )
       ),
+      Div,
       Constant(5)
     )
 
@@ -24,19 +29,24 @@ object TestFixtures:
   val complex1string2 = "  ((1 + 2) - (3 * 4)) / 5  "
 
   val complex2 =
-    Mod(
-      Minus(
-        Plus(
+    Binary(
+      Binary(
+        Binary(
           Constant(1),
+          Plus,
           Constant(2)
         ),
-        Times(
-          UMinus(
+        Minus,
+        Binary(
+          Unary(
+            Minus, 
             Constant(3)
           ),
+          Times,
           Constant(4)
         )
       ),
+      Mod,
       Constant(5)
     )
 

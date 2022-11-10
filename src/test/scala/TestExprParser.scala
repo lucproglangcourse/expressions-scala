@@ -3,18 +3,20 @@ package edu.luc.cs.laufer.cs371.expressions
 import org.scalatest.funsuite.AnyFunSuite
 import TestFixtures.*
 
-object MainCombinatorParser:
+object MainExprParser:
   def main(args: Array[String]): Unit =
-    val parsedExpr = ASTBuilder.parseAll(ASTBuilder.expr, complex1string)
-    println(parsedExpr.get)
+    val raw = ExprParser.parseAll(ExprParser.expr, complex1string)
+    val ir = IRBuilder(raw)
+    println(raw)
+    println(ir)
     println(complex1)
-    println(parsedExpr.get == complex1)
-    println(behaviors.evaluate(parsedExpr.get))
-end MainCombinatorParser
+    println(ir == complex1)
+    println(behaviors.evaluate(ir))
+end MainExprParser
 
-class TestCombinatorParser extends AnyFunSuite:
-  val parsedExpr = ASTBuilder.parseAll(ASTBuilder.expr, complex1string)
-  val parsedExpr2 = ASTBuilder.parseAll(ASTBuilder.expr, complex1string2)
-  test("parser works 1") { assert(parsedExpr.get == complex1) }
-  test("parser works 2") { assert(parsedExpr2.get == complex1) }
-end TestCombinatorParser
+class TestExprParser extends AnyFunSuite:
+  val parsedExpr = ExprParser.parseAll(ExprParser.expr, complex1string)
+  val parsedExpr2 = ExprParser.parseAll(ExprParser.expr, complex1string2)
+  test("parser works 1") { assert(IRBuilder(parsedExpr.get) == complex1) }
+  test("parser works 2") { assert(IRBuilder(parsedExpr2.get) == complex1) }
+end TestExprParser
