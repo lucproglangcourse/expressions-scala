@@ -18,12 +18,12 @@ object behaviors:
     case Binary(l, op, r)  => toFunction2(op)(evaluate(l), evaluate(r))
 
   def size(e: Expr): Int = e match
-    case Constant(c) => 1
+    case Constant(_) => 1
     case Unary(_, e) => 1 + size(e)
     case Binary(l, _, r) => 1 + size(l) + size(r)
 
   def height(e: Expr): Int = e match
-    case Constant(c) => 1
+    case Constant(_) => 1
     case Unary(_, e) => 1 + height(e)
     case Binary(l, _, r) => 1 + math.max(height(l), height(r))
 

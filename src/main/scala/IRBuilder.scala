@@ -2,8 +2,6 @@ package edu.luc.cs.laufer.cs371.expressions
 
 import Expr.*
 
-import scala.util.parsing.combinator.Parsers
-
 object IRBuilder:
 
   given CanEqual[None.type, Any] = CanEqual.derived
