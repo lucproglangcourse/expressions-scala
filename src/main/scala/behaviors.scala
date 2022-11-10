@@ -1,41 +1,37 @@
 package edu.luc.cs.laufer.cs371.expressions
 
 import Expr.*
+import Operator.*
 
 object behaviors:
 
+  def toFunction2(op: Operator): (Int, Int) => Int = op match
+    case Plus => _ + _
+    case Minus => _ - _
+    case Times => _ * _
+    case Div => _ / _
+    case Mod => _ % _
+
   def evaluate(e: Expr): Int = e match
     case Constant(c) => c
-    case UMinus(r)   => -evaluate(r)
-    case Plus(l, r)  => evaluate(l) + evaluate(r)
-    case Minus(l, r) => evaluate(l) - evaluate(r)
-    case Times(l, r) => evaluate(l) * evaluate(r)
-    case Div(l, r)   => evaluate(l) / evaluate(r)
-    case Mod(l, r)   => evaluate(l) % evaluate(r)
+    case Unary(op, e)   => toFunction2(op)(0, evaluate(e))
+    case Binary(l, op, r)  => toFunction2(op)(evaluate(l), evaluate(r))
 
   def size(e: Expr): Int = e match
     case Constant(c) => 1
-    case UMinus(r)   => 1 + size(r)
-    case Plus(l, r)  => 1 + size(l) + size(r)
-    case Minus(l, r) => 1 + size(l) + size(r)
-    case Times(l, r) => 1 + size(l) + size(r)
-    case Div(l, r)   => 1 + size(l) + size(r)
-    case Mod(l, r)   => 1 + size(l) + size(r)
+    case Unary(_, e) => 1 + size(e)
+    case Binary(l, _, r) => 1 + size(l) + size(r)
 
   def height(e: Expr): Int = e match
     case Constant(c) => 1
-    case UMinus(r)   => 1 + height(r)
-    case Plus(l, r)  => 1 + math.max(height(l), height(r))
-    case Minus(l, r) => 1 + math.max(height(l), height(r))
-    case Times(l, r) => 1 + math.max(height(l), height(r))
-    case Div(l, r)   => 1 + math.max(height(l), height(r))
-    case Mod(l, r)   => 1 + math.max(height(l), height(r))
+    case Unary(_, e) => 1 + height(e)
+    case Binary(l, _, r) => 1 + math.max(height(l), height(r))
 
   import org.json4s.JsonAST.JValue
   import org.json4s.JsonDSL.*
   def toJson(e: Expr): JValue = e match
     case Constant(c) => c
-    case UMinus(r)   => e.productPrefix -> toJson(r)
-    case p           => p.productPrefix -> (0 until p.productArity).map(i => toJson(p.productElement(i).asInstanceOf[Expr]))
+    case Unary(op, e) => ("op" -> op.toString) ~ ("expr" -> toJson(e))
+    case Binary(l, op, r) => ("left" -> toJson(l)) ~ ("op" -> op.toString) ~ ("right" -> toJson(r))
 
 end behaviors
