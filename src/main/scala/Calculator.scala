@@ -10,13 +10,13 @@ object Calculator:
     else
       import org.json4s.native.JsonMethods.{pretty, render}
       import behaviors.*
-      val raw = result.get
-      println("The untyped parse tree is: " + raw)
-      val expr = IRBuilder(raw)
-      println("The resulting expression is: " + expr)
+      val cst = result.get
+      println("The parse tree (concrete syntax tree) is: " + cst)
+      val expr = ASTBuilder(cst)
+      println("The resulting abstract syntax tree (AST) is: " + expr)
       println("The corresponding JSON structure is:")
       println(pretty(render(toJson(expr))))
-      println("It has size " + size(expr) + " and height " + height(expr))
+      println("The AST has size " + size(expr) + " and height " + height(expr))
       println("It evaluates to " + evaluate(expr))
 
   def main(args: Array[String]): Unit =

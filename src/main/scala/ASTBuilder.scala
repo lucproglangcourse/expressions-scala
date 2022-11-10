@@ -2,7 +2,7 @@ package edu.luc.cs.laufer.cs371.expressions
 
 import Expr.*
 
-object IRBuilder:
+object ASTBuilder:
 
   given CanEqual[None.type, Any] = CanEqual.derived
 
@@ -14,4 +14,4 @@ object IRBuilder:
     case (op: String) ~ e => Unary(Operator.fromSymbol(op), apply(e))
     case n: String => Constant(n.toInt)
 
-end IRBuilder
+end ASTBuilder
