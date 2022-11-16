@@ -1,5 +1,7 @@
 package edu.luc.cs.laufer.cs371.expressions
 
+import scala.util.Try
+
 object Calculator:
 
   def processExpr(input: String): Unit =
@@ -17,7 +19,7 @@ object Calculator:
       println("The corresponding JSON structure is:")
       println(pretty(render(toJson(expr))))
       println("The AST has size " + size(expr) + " and height " + height(expr))
-      println("It evaluates to " + evaluate(expr))
+      println("It evaluates to " + Try(evaluate(expr)))
 
   def main(args: Array[String]): Unit =
     if args.length > 0 then
