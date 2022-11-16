@@ -5,6 +5,10 @@ import Operator.*
 
 object behaviors:
 
+  def toFunction1(op: Operator): Int => Int = op match
+    case Plus => + _
+    case Minus => - _
+
   def toFunction2(op: Operator): (Int, Int) => Int = op match
     case Plus => _ + _
     case Minus => _ - _
@@ -14,7 +18,7 @@ object behaviors:
 
   def evaluate(e: Expr): Int = e match
     case Constant(c) => c
-    case Unary(op, e)   => toFunction2(op)(0, evaluate(e))
+    case Unary(op, e)   => toFunction1(op)(evaluate(e))
     case Binary(l, op, r)  => toFunction2(op)(evaluate(l), evaluate(r))
 
   def size(e: Expr): Int = e match
