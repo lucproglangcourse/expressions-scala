@@ -4,7 +4,7 @@ version := "0.4"
 
 scalaVersion := "3.2.0"
 
-scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-Yexplicit-nulls", "-Ysafe-init", "-language:strictEquality")
+scalacOptions += "@.scalacOptions.txt"
 
 libraryDependencies ++= Seq(
   "org.scala-lang.modules" %% "scala-parser-combinators" % "2.3.0",
