@@ -24,9 +24,9 @@ object Calculator:
       processExpr(args mkString " ")
     else
       print("Enter infix expression: ")
-      scala.io.Source.stdin.getLines() foreach { line =>
-        processExpr(line)
-        print("Enter infix expression: ")
-      }
+      scala.io.Source.stdin.getLines() foreach:
+        line =>
+          processExpr(line)
+          print("Enter infix expression: ")
 
 end Calculator
