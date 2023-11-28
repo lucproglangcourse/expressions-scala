@@ -1,17 +1,21 @@
 package edu.luc.cs.laufer.cs371.expressions
 
+import util.Try
+
 import Expr.*
 
 object behaviors:
 
-  def evaluate(e: Expr): Int = e match
+  private def evaluateR(e: Expr): Int = e match
     case Constant(c) => c
-    case UMinus(r)   => -evaluate(r)
-    case Plus(l, r)  => evaluate(l) + evaluate(r)
-    case Minus(l, r) => evaluate(l) - evaluate(r)
-    case Times(l, r) => evaluate(l) * evaluate(r)
-    case Div(l, r)   => evaluate(l) / evaluate(r)
-    case Mod(l, r)   => evaluate(l) % evaluate(r)
+    case UMinus(r)   => -evaluateR(r)
+    case Plus(l, r)  => evaluateR(l) + evaluateR(r)
+    case Minus(l, r) => evaluateR(l) - evaluateR(r)
+    case Times(l, r) => evaluateR(l) * evaluateR(r)
+    case Div(l, r)   => evaluateR(l) / evaluateR(r)
+    case Mod(l, r)   => evaluateR(l) % evaluateR(r)
+
+  def evaluate(e: Expr): Try[Int] = Try(evaluateR(e))
 
   def size(e: Expr): Int = e match
     case Constant(c) => 1

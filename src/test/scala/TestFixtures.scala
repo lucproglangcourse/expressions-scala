@@ -40,4 +40,6 @@ object TestFixtures:
       Constant(5)
     )
 
+  val bad = Div(Constant(3), Constant(0))
+
 end TestFixtures
