@@ -9,9 +9,9 @@ object behaviors:
   private def evaluateR(e: Expr): Int = e match
     case Constant(c) => c
     case UMinus(r)   => -evaluateR(r)
-    case Plus(l, r)  => evaluateR(l) + evaluateR(r)
-    case Minus(l, r) => evaluateR(l) - evaluateR(r)
-    case Times(l, r) => evaluateR(l) * evaluateR(r)
+    case Plus(l, r)  => evaluateR(l) + evaluateR(r) // Seq(l, r).map(evaluateR).sum
+    case Minus(l, r) => evaluateR(l) - evaluateR(r) // Seq(l, r).map(evaluateR).foldLeft(0)(_ - _)
+    case Times(l, r) => evaluateR(l) * evaluateR(r) // Seq(l, r).map(evaluateR).product
     case Div(l, r)   => evaluateR(l) / evaluateR(r)
     case Mod(l, r)   => evaluateR(l) % evaluateR(r)
 
@@ -20,7 +20,7 @@ object behaviors:
   def size(e: Expr): Int = e match
     case Constant(c) => 1
     case UMinus(r)   => 1 + size(r)
-    case Plus(l, r)  => 1 + size(l) + size(r)
+    case Plus(l, r)  => 1 + size(l) + size(r) // 1 + Seq(l, r).map(size).sum
     case Minus(l, r) => 1 + size(l) + size(r)
     case Times(l, r) => 1 + size(l) + size(r)
     case Div(l, r)   => 1 + size(l) + size(r)
@@ -29,7 +29,7 @@ object behaviors:
   def height(e: Expr): Int = e match
     case Constant(c) => 1
     case UMinus(r)   => 1 + height(r)
-    case Plus(l, r)  => 1 + math.max(height(l), height(r))
+    case Plus(l, r)  => 1 + math.max(height(l), height(r))  // 1 + Seq(l, r).map(height).max
     case Minus(l, r) => 1 + math.max(height(l), height(r))
     case Times(l, r) => 1 + math.max(height(l), height(r))
     case Div(l, r)   => 1 + math.max(height(l), height(r))
