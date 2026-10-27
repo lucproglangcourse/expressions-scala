@@ -9,3 +9,4 @@ libraryDependencies ++= Seq(
 )
 
 enablePlugins(JavaAppPackaging)
+enablePlugins(ScraiPlugin)
